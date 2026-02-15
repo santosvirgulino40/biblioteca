@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chancelaria Digital Seidōkai</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@200;900&display=swap');
+
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* CABEÇALHO */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            border-bottom: 2px solid #c5a059;
+            width: 100%;
+            background: linear-gradient(to bottom, #1a1a1a, #0a0a0a);
+        }
+
+        header img {
+            width: 200px;
+            filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.5));
+        }
+
+        header h1 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 8px;
+            color: #ffffff;
+            margin: 20px 0 5px 0;
+        }
+
+        header p {
+            font-family: 'Cinzel', serif;
+            color: #c5a059;
+            letter-spacing: 5px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        /* GRID DE CATEGORIAS */
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            margin: 40px 0;
+        }
+
+        .category-section {
+            margin-bottom: 30px;
+            border: 1px solid #333;
+            background-color: #111;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .category-header {
+            background-color: #1a1a1a;
+            padding: 15px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #c5a059;
+            transition: background 0.3s;
+        }
+
+        .category-header:hover {
+            background-color: #222;
+        }
+
+        .category-header h2 {
+            margin: 0;
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: #c5a059;
+            letter-spacing: 2px;
+        }
+
+        /* LISTA DE DOCUMENTOS */
+        .document-list {
+            padding: 10px 0;
+            display: none; /* Escondido por padrão */
+        }
+
+        .document-item {
+            padding: 12px 40px;
+            border-bottom: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.2s;
+            text-decoration: none;
+            color: #ccc;
+        }
+
+        .document-item:hover {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding-left: 50px;
+        }
+
+        .document-item span {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 40px;
+            font-size: 10px;
+            color: #444;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="Seidokai_Josobu.png" alt="Logo Seidōkai">
+        <h1>CLÃ SEIDŌKAI</h1>
+        <p>Chancelaria de Inteligência e Lei</p>
+    </header>
+
+    <div class="container">
+
+        <!-- CATEGORIA: JŌSOBU -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('josobu')">
+                <h2>01. DECRETOS DE CÚPULA (JŌSOBU)</h2>
+                <span>▼</span>
+            </div>
+            <div id="josobu" class="document-list">
+                <a href="decretos/decreto-soberania.html" class="document-item">
+                    Decreto de Soberania (Ten no Danketsu) <span>01/02/2026</span>
+                </a>
+                <a href="decretos/ascensao-fabio.html" class="document-item">
+                    Ascensão ao Conselho: Shingiin Fabio Araujo <span>09/02/2026</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- CATEGORIA: SHINGI-KAI -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('shingikai')">
+                <h2>02. SENTENÇAS E PARECERES (SHINGI-KAI)</h2>
+                <span>▼</span>
+            </div>
+            <div id="shingikai" class="document-list">
+                <a href="decretos/hammon-winchester.html" class="document-item">
+                    Edital de Ruptura Total: Felipe Winchester <span>13/02/2026</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- CATEGORIA: SANTOS & ASSOCIADOS -->
+        <div class="category-section">
+            <div class="category-header" onclick="toggleCategory('juridico')">
+                <h2>03. SANTOS & ASSOCIADOS (OMOTE)</h2>
+                <span>▼</span>
+            </div>
+            <div id="juridico" class="document-list">
+                <a href="juridico/contrato-social.html" class="document-item">
+                    Contrato Social de Constituição <span>11/02/2026</span>
+                </a>
+                <a href="juridico/peticao-heitor.html" class="document-item">
+                    Petição Inicial: Caso Heitor Alves <span>11/02/2026</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        PRUDENTIA, JUSTITIA ET POTENTIA | © 2026 CLÃ SEIDŌKAI
+    </footer>
+
+    <script>
+        function toggleCategory(id) {
+            const list = document.getElementById(id);
+            if (list.style.display === "block") {
+                list.style.display = "none";
+            } else {
+                list.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
