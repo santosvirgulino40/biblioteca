@@ -3,33 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chancelaria Digital Seidōkai</title>
+    <title>Chancelaria Interna Seidōkai · URA</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Serif+JP:wght@200;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
             background-color: #0a0a0a;
             color: #e0e0e0;
             font-family: 'Times New Roman', serif;
-            margin: 0;
-            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
-        /* CABEÇALHO */
+        /* CABEÇALHO COM TONS MAIS ESCUROS (URA) */
         header {
             text-align: center;
-            padding: 50px 20px;
-            border-bottom: 2px solid #c5a059;
+            padding: 40px 20px 30px;
+            border-bottom: 2px solid #8b3a3a; /* vermelho escuro */
             width: 100%;
             background: linear-gradient(to bottom, #1a1a1a, #0a0a0a);
+            margin-bottom: 30px;
         }
 
         header img {
             width: 200px;
-            filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.5));
+            filter: drop-shadow(0 0 10px rgba(139, 58, 58, 0.5));
         }
 
         header h1 {
@@ -41,159 +47,315 @@
 
         header p {
             font-family: 'Cinzel', serif;
-            color: #c5a059;
+            color: #b34a4a;
             letter-spacing: 5px;
             font-size: 14px;
             text-transform: uppercase;
         }
 
-        /* GRID DE CATEGORIAS */
-        .container {
-            max-width: 1000px;
-            width: 90%;
-            margin: 40px 0;
-        }
-
-        .category-section {
-            margin-bottom: 30px;
-            border: 1px solid #333;
-            background-color: #111;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .category-header {
-            background-color: #1a1a1a;
-            padding: 15px 25px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #c5a059;
-            transition: background 0.3s;
-        }
-
-        .category-header:hover {
-            background-color: #222;
-        }
-
-        .category-header h2 {
-            margin: 0;
-            font-family: 'Cinzel', serif;
-            font-size: 18px;
-            color: #c5a059;
+        /* AVISO DE ACESSO RESTRITO */
+        .restricted-warning {
+            background-color: #8b3a3a;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
             letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-family: 'Cinzel', serif;
         }
 
-        /* LISTA DE DOCUMENTOS */
-        .document-list {
-            padding: 10px 0;
-            display: none; /* Escondido por padrão */
+        /* CONTAINER PRINCIPAL */
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            margin: 0 auto 40px;
+            flex: 1;
         }
 
-        .document-item {
-            padding: 12px 40px;
-            border-bottom: 1px solid #222;
+        /* BARRA DE PESQUISA */
+        .search-bar {
+            margin: 20px 0 30px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: 0.2s;
-            text-decoration: none;
-            color: #ccc;
+            gap: 10px;
         }
-
-        .document-item:hover {
+        .search-bar input {
+            flex: 1;
+            padding: 12px 20px;
             background-color: #1a1a1a;
-            color: #fff;
-            padding-left: 50px;
+            border: 1px solid #8b3a3a;
+            color: #e0e0e0;
+            font-size: 16px;
+            border-radius: 40px;
+            outline: none;
         }
-
-        .document-item span {
-            font-size: 12px;
+        .search-bar input::placeholder {
             color: #666;
             font-style: italic;
         }
+        .search-bar button {
+            background-color: #8b3a3a;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            padding: 0 30px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            transition: 0.3s;
+        }
+        .search-bar button:hover {
+            background-color: #b14d4d;
+        }
+
+        /* LOADING / ERRO */
+        .loading, .error {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-style: italic;
+        }
+        .error {
+            color: #c55;
+        }
+
+        /* LISTA DE ARQUIVOS (ÁRVORE) */
+        .tree {
+            list-style: none;
+            padding-left: 20px;
+        }
+        .tree li {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+        .tree .folder {
+            cursor: pointer;
+            font-weight: bold;
+            color: #c5a059; /* dourado mantido para contraste */
+            font-family: 'Cinzel', serif;
+            letter-spacing: 1px;
+            user-select: none;
+        }
+        .tree .folder:hover {
+            text-decoration: underline;
+        }
+        .tree .folder::before {
+            content: "📁 ";
+            font-size: 1.2em;
+        }
+        .tree .folder.open::before {
+            content: "📂 ";
+        }
+        .tree .file {
+            margin-left: 25px;
+            display: block;
+        }
+        .tree .file a {
+            color: #e0e0e0;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        .tree .file a:hover {
+            color: #b34a4a;
+            padding-left: 5px;
+        }
+        .tree .file a::before {
+            content: "📄 ";
+            font-size: 1.1em;
+            color: #888;
+        }
+        .tree .nested {
+            display: none;
+            list-style: none;
+            padding-left: 25px;
+        }
+        .active .nested {
+            display: block;
+        }
 
         footer {
-            margin-top: auto;
-            padding: 40px;
+            padding: 30px;
             font-size: 10px;
             color: #444;
             letter-spacing: 2px;
             text-align: center;
+            border-top: 1px solid #222;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="Seidokai_Josobu.png" alt="Logo Seidōkai">
-        <h1>CLÃ SEIDŌKAI</h1>
-        <p>Chancelaria de Inteligência e Lei</p>
+        <img src="https://github.com/jimusho-seidokai/biblioteca/blob/main/imagens/Seidokai_Josobu.png?raw=true" alt="Logo Seidōkai URA" onerror="this.src='https://via.placeholder.com/200x80?text=URA'">
+        <h1>CHANCELARIA INTERNA</h1>
+        <p>URA · Acesso Restrito</p>
     </header>
 
     <div class="container">
-
-        <!-- CATEGORIA: JŌSOBU -->
-        <div class="category-section">
-            <div class="category-header" onclick="toggleCategory('josobu')">
-                <h2>01. DECRETOS DE CÚPULA (JŌSOBU)</h2>
-                <span>▼</span>
-            </div>
-            <div id="josobu" class="document-list">
-                <a href="decretos/decreto-soberania.html" class="document-item">
-                    Decreto de Soberania (Ten no Danketsu) <span>01/02/2026</span>
-                </a>
-                <a href="decretos/DECRETO_SHINGIIN_FABIO.html" class="document-item">
-                    Ascensão ao Conselho: Shingiin Fabio Araujo <span>15/02/2026</span>
-                </a>
-            </div>
+        <div class="restricted-warning">
+            ⚠️ ACESSO RESTRITO – APENAS PARA MEMBROS DO CLÃ SEIDŌKAI
         </div>
 
-        <!-- CATEGORIA: SHINGI-KAI -->
-        <div class="category-section">
-            <div class="category-header" onclick="toggleCategory('shingikai')">
-                <h2>02. SENTENÇAS E PARECERES (SHINGI-KAI)</h2>
-                <span>▼</span>
-            </div>
-            <div id="shingikai" class="document-list">
-                <a href="decretos/ZETSUEN_FELIPE.html" class="document-item">
-                    Edital de Ruptura Total: Felipe Winchester <span>13/02/2026</span>
-                </a>
-            </div>
+        <!-- Barra de pesquisa -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Buscar por documentos internos...">
+            <button onclick="filterFiles()">BUSCAR</button>
         </div>
 
-        <!-- CATEGORIA: SANTOS & ASSOCIADOS -->
-        <div class="category-section">
-            <div class="category-header" onclick="toggleCategory('juridico')">
-                <h2>03. SANTOS & ASSOCIADOS (OMOTE)</h2>
-                <span>▼</span>
-            </div>
-            <div id="juridico" class="document-list">
-                <a href="juridico/Contrato_Social_Advocacia.html" class="document-item">
-                    Contrato Social de Constituição <span>11/02/2026</span>
-                </a>
-                <a href="juridico/PETIÇÃO_HEITOR_ALVES.html" class="document-item">
-                    Petição Inicial: Caso Heitor Alves <span>11/02/2026</span>
-                </a>
-            </div>
-        </div>
-
+        <!-- Área onde a árvore será renderizada -->
+        <div id="tree-container" class="tree"></div>
     </div>
 
     <footer>
-        PRUDENTIA, JUSTITIA ET POTENTIA | © 2026 CLÃ SEIDŌKAI
+        PRUDENTIA, JUSTITIA ET POTENTIA | URA · INTERNO · © 2026 CLÃ SEIDŌKAI
     </footer>
 
     <script>
-        function toggleCategory(id) {
-            const list = document.getElementById(id);
-            if (list.style.display === "block") {
-                list.style.display = "none";
-            } else {
-                list.style.display = "block";
+        // ============================================================
+        // CONFIGURAÇÃO – SUBSTITUA PELOS SEUS DADOS
+        // ============================================================
+        const GITHUB_USER = 'jimusho-seidokai';        // ex: 'virgulinosantos'
+        const GITHUB_REPO = 'biblioteca'; // ex: 'santos-associados-ura'
+        const BRANCH = 'main'; // ou 'master'
+
+        // PARA REPOSITÓRIOS PRIVADOS, VOCÊ PRECISA DE UM TOKEN DE ACESSO PESSOAL
+        // Crie um token em: https://github.com/settings/tokens (marque apenas "repo" para acesso total a repositórios privados)
+        // Depois cole o token entre as aspas abaixo.
+        const GITHUB_TOKEN = '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';  // ex: 'ghp_1234567890abcdef'
+
+        // ============================================================
+        // NÃO ALTERE NADA ABAIXO DESTA LINHA
+        // ============================================================
+
+        const container = document.getElementById('tree-container');
+        let allFiles = [];
+
+        async function loadRepositoryTree() {
+            container.innerHTML = '<div class="loading">⏳ Carregando estrutura do repositório URA (requer token válido)...</div>';
+            try {
+                const url = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/git/trees/${BRANCH}?recursive=1`;
+                const headers = {};
+                if (GITHUB_TOKEN && GITHUB_TOKEN !== 'SEU_TOKEN_PESSOAL_AQUI') {
+                    headers['Authorization'] = `token ${GITHUB_TOKEN}`;
+                } else {
+                    throw new Error('Token não configurado. Repositório privado exige autenticação.');
+                }
+
+                const response = await fetch(url, { headers });
+                if (!response.ok) {
+                    if (response.status === 401) throw new Error('Token inválido ou sem permissão.');
+                    if (response.status === 403) throw new Error('Limite de requisições excedido. Token pode ajudar.');
+                    if (response.status === 404) throw new Error('Repositório não encontrado. Verifique nome/usuário.');
+                    throw new Error(`Erro HTTP: ${response.status}`);
+                }
+                const data = await response.json();
+
+                // Filtra apenas arquivos .html
+                const htmlFiles = data.tree.filter(item => item.type === 'blob' && item.path.endsWith('.html'));
+                allFiles = htmlFiles.map(f => f.path);
+
+                if (allFiles.length === 0) {
+                    container.innerHTML = '<div class="loading">Nenhum arquivo .html encontrado.</div>';
+                    return;
+                }
+
+                const tree = buildTree(allFiles);
+                renderTree(tree);
+            } catch (error) {
+                container.innerHTML = `<div class="error">❌ Erro: ${error.message}<br><br>Verifique:<br>1. O token está configurado corretamente.<br>2. O repositório é privado e você tem acesso.<br>3. As variáveis GITHUB_USER, GITHUB_REPO e BRANCH estão certas.</div>`;
             }
         }
+
+        function buildTree(paths) {
+            const root = { name: 'root', type: 'folder', children: [] };
+            paths.forEach(path => {
+                const parts = path.split('/');
+                let current = root;
+                for (let i = 0; i < parts.length; i++) {
+                    const part = parts[i];
+                    if (i === parts.length - 1) {
+                        current.children.push({ name: part, type: 'file', path: path });
+                    } else {
+                        let folder = current.children.find(c => c.name === part && c.type === 'folder');
+                        if (!folder) {
+                            folder = { name: part, type: 'folder', children: [] };
+                            current.children.push(folder);
+                        }
+                        current = folder;
+                    }
+                }
+            });
+            sortTree(root);
+            return root.children;
+        }
+
+        function sortTree(node) {
+            if (node.children) {
+                node.children.sort((a, b) => {
+                    if (a.type === b.type) return a.name.localeCompare(b.name);
+                    return a.type === 'folder' ? -1 : 1;
+                });
+                node.children.forEach(child => sortTree(child));
+            }
+        }
+
+        function renderTree(nodes, parentElement = container) {
+            if (!nodes || nodes.length === 0) {
+                parentElement.innerHTML = '<div class="loading">Nenhum arquivo .html encontrado.</div>';
+                return;
+            }
+            const ul = document.createElement('ul');
+            ul.className = 'tree';
+            nodes.forEach(node => {
+                const li = document.createElement('li');
+                if (node.type === 'folder') {
+                    li.className = 'folder';
+                    li.textContent = node.name;
+                    li.onclick = function(e) {
+                        e.stopPropagation();
+                        this.classList.toggle('open');
+                        const nested = this.querySelector('ul');
+                        if (nested) nested.style.display = nested.style.display === 'block' ? 'none' : 'block';
+                    };
+                    const childUl = document.createElement('ul');
+                    childUl.className = 'nested';
+                    childUl.style.display = 'none';
+                    renderTree(node.children, childUl);
+                    li.appendChild(childUl);
+                } else {
+                    li.className = 'file';
+                    const a = document.createElement('a');
+                    a.href = node.path;
+                    a.textContent = node.name;
+                    a.title = node.path;
+                    li.appendChild(a);
+                }
+                ul.appendChild(li);
+            });
+            parentElement.appendChild(ul);
+        }
+
+        function filterFiles() {
+            const term = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (!term) {
+                container.innerHTML = '';
+                const rootNodes = buildTree(allFiles);
+                renderTree(rootNodes);
+                return;
+            }
+            const filteredPaths = allFiles.filter(path => path.toLowerCase().includes(term));
+            const filteredTree = buildTree(filteredPaths);
+            container.innerHTML = '';
+            renderTree(filteredTree);
+        }
+
+        // Inicia o carregamento
+        loadRepositoryTree();
     </script>
 </body>
 </html>
