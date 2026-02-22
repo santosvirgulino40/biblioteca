@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento Interno da Cúpula (Josobu) – Hanamichi de Rafael Dias</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            font-family: 'Times New Roman', serif;
+            padding: 20px 0;
+        }
+        .documento {
+            background-color: white;
+            color: black;
+            width: 210mm;
+            min-height: 297mm;
+            padding: 1.2cm 1.8cm;
+            margin: 0 auto;
+            text-align: justify;
+            line-height: 1.3;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: none;
+            box-shadow: none;
+        }
+        /* cabeçalho soberano josobu */
+        .cabecalho-josobu {
+            text-align: center;
+            margin-bottom: 15px;
+            flex-shrink: 0;
+        }
+        .logo-josobu {
+            margin-bottom: -35px;
+        }
+        .logo-josobu img {
+            width: 220px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .cabecalho-josobu h1 {
+            margin: 0;
+            font-size: 20pt;
+            letter-spacing: 8px;
+            font-weight: bold;
+            color: black;
+            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+        }
+        .cabecalho-josobu .josobu-titulo {
+            margin: 2px 0;
+            font-size: 14pt;
+            text-transform: uppercase;
+            letter-spacing: 15px;
+            color: #c5a059;
+            font-weight: bold;
+            border-top: 1.5px solid #c5a059;
+            border-bottom: 1.5px solid #c5a059;
+            display: inline-block;
+            padding: 1px 40px;
+        }
+        .cabecalho-josobu .lema {
+            margin-top: 10px;
+            font-size: 9pt;
+            letter-spacing: 3px;
+            color: #333;
+            font-style: italic;
+        }
+        .selo-ura {
+            position: absolute;
+            top: 2.5cm;
+            right: 2cm;
+            font-size: 12pt;
+            font-weight: bold;
+            color: #8b3a3a;
+            border: 2px solid #8b3a3a;
+            padding: 5px 10px;
+            transform: rotate(5deg);
+            font-family: 'Cinzel', serif;
+            opacity: 0.8;
+            z-index: 20;
+        }
+        .titulo-documento {
+            text-align: center;
+            margin: 10px 0 20px;
+            flex-shrink: 0;
+        }
+        .titulo-documento span {
+            font-size: 14pt;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 2px solid black;
+            padding-bottom: 2px;
+        }
+        .subtitulo-doc {
+            text-align: center;
+            font-size: 11pt;
+            font-weight: bold;
+            color: #8b3a3a;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .corpo {
+            font-size: 10.5pt;
+            color: black;
+            flex-grow: 1;
+            margin-bottom: 100px;
+        }
+        .corpo p {
+            margin: 0 0 8px 0;
+            text-align: justify;
+        }
+        .corpo .epigrafe {
+            font-style: italic;
+            font-size: 10pt;
+            color: #444;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .corpo h3 {
+            font-size: 11pt;
+            font-weight: bold;
+            margin: 15px 0 5px 0;
+            color: #001f3f;
+            border-left: 3px solid #c5a059;
+            padding-left: 8px;
+        }
+        .corpo .destaque {
+            font-weight: bold;
+            color: #8b3a3a;
+        }
+        .corpo .japones {
+            font-style: italic;
+            color: #555;
+        }
+        .bloco-honra {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px dashed #c5a059;
+            background-color: #fcf9f0;
+        }
+        .bloco-honra p {
+            margin: 5px 0;
+        }
+        .assinatura-dupla {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            padding-bottom: 50px;
+        }
+        .assinatura-col {
+            text-align: center;
+            width: 260px;
+            position: relative;
+        }
+        .linha-assinatura {
+            border-top: 1.5px solid black;
+            margin-bottom: 5px;
+            width: 100%;
+        }
+        .assinatura-col img {
+            width: 150px;
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            filter: grayscale(100%) contrast(1.2);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+        .nome-assinatura {
+            margin: 0;
+            font-weight: bold;
+            font-size: 11pt;
+            text-transform: uppercase;
+        }
+        .cargo-assinatura {
+            margin: 2px 0 0 0;
+            font-size: 8.5pt;
+            text-transform: uppercase;
+            color: #333;
+            font-weight: bold;
+        }
+        .rodape {
+            position: absolute;
+            bottom: 0.8cm;
+            left: 1.8cm;
+            right: 1.8cm;
+            text-align: center;
+            font-size: 7pt;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 5px;
+        }
+        .numero-documento {
+            position: absolute;
+            top: 1.2cm;
+            left: 1.8cm;
+            font-size: 8pt;
+            color: #999;
+            font-family: monospace;
+        }
+        @media print {
+            body { background: white; }
+        }
+    </style>
+</head>
+<body>
+    <div class="documento">
+        <div class="numero-documento">JOSOBU/URA 001/2026 – HANAMICHI</div>
+        <div class="selo-ura">URA · ACESSO RESTRITO</div>
+
+        <!-- CABEÇALHO SOBERANO JŌSOBU -->
+        <div class="cabecalho-josobu">
+            <div class="logo-josobu">
+                <img src="https://i.imgur.com/HRlUYd7.png" alt="JŌSOBU">
+            </div>
+            <h1>CLÃ SEIDŌKAI</h1>
+            <div class="josobu-titulo">JŌSOBU</div>
+            <div class="lema">“O aço é forjado no fogo; a honra é provada no silêncio.”</div>
+        </div>
+
+        <!-- TÍTULO -->
+        <div class="titulo-documento">
+            <span>DOCUMENTO INTERNO DA CÚPULA</span>
+        </div>
+        <div class="subtitulo-doc">
+            HANAMICHI · EXÍLIO ESTRATÉGICO · SHATEI RAFAEL DIAS
+        </div>
+
+        <!-- CORPO -->
+        <div class="corpo">
+            <p class="epigrafe">
+                “O tempo é um oceano que separa os homens comuns de seus desejos, mas para o Clã Seidōkai, o tempo é apenas a forja onde a lealdade espera o momento de ser temperada novamente. Oito anos não apagam um nome gravado em sangue.”
+            </p>
+
+            <p>Irmãos do Clã Seidōkai,</p>
+
+            <p>Nesta sexta-feira, <strong>20 de fevereiro de 2026</strong>, enquanto o mundo lá fora segue alheio à nossa jornada, a nossa Corrente se fechará em um ritual de honra sem precedentes. O Jōsobu comunica o início do <strong>Hanamichi</strong> do Shatei <strong>Rafael Dias</strong>. Por um chamado soberano de ordem militar e inegociável, nosso irmão iniciará uma jornada de exílio estratégico além-fronteiras que o manterá afastado de nossas operações por longos oito anos. Ele não parte como alguém que entrega o terno, mas como um oficial em missão de longo prazo, levando o espírito do Aço Negro para onde o dever o convocar.</p>
+
+            <h3>I – DO RECRUTAMENTO E BATISMO DE FOGO</h3>
+            <p>A trajetória deste homem é a própria história da nossa fundação. Tudo começou em <strong>14 de dezembro de 2025</strong>, quando foi recrutado pessoalmente pelo Saiko Komon Virgulino Santos. Sob a alcunha de <strong>Mauro Shampo</strong>, ele realizou o seu Kari Sakazuki e, desde o primeiro minuto, provou que não era um homem de palavras, mas de fatos. Apenas cinco dias após sua entrada, em <strong>19 de dezembro de 2025</strong>, Rafael enfrentou seu batismo de fogo no <strong>Teste de Mokuhi</strong>: detido injustamente pelo Estado, ele se tornou uma muralha de silêncio absoluto. Não cedeu, não vacilou e não abriu a boca, forçando a cúpula a intervir com força jurídica e financeira para resgatá-lo. Ali, o Clã soube que possuía um diamante bruto em mãos.</p>
+
+            <p>Em <strong>22 de dezembro de 2025</strong>, a lealdade de Rafael foi selada em sangue. Ele foi um dos irmãos emboscados ao lado do Oyabun Josef Medina na infame "reunião de paz" que se provou uma armadilha covarde. Rafael sangrou pela Família naquele dia, e esse sangue foi o estopim que iniciou a nossa Guerra Total. Durante o terrível <strong>Inverno de Ferro (Tetsu no Fuyu)</strong>, iniciado em <strong>23 de dezembro</strong>, ele serviu como um soldado de linha de frente inabalável, participando de cada contra-ofensiva ao cerco final contra a Aliança, nunca recuando um passo sequer diante da morte.</p>
+
+            <h3>II – DA ASCENSÃO E DO SACRIFÍCIO</h3>
+            <p>O reconhecimento veio em <strong>03 de janeiro de 2026</strong>, quando foi promovido a <strong>Shatei</strong> na 4ª Assembleia do Kirin. Rafael deixou de ser apenas um executor para se tornar um pilar de confiança. Em <strong>05 de janeiro</strong>, recebeu do Jōsobu a missão sagrada de ser o <strong>Azukarinin (mentor)</strong> do então novo Kobun Emerson Carvalho, moldando o caráter de quem hoje é um dos nossos oficiais mais valiosos. Em <strong>07 de janeiro</strong>, mesmo diante de um confronto acidental com a lei, ele demonstrou a disciplina de um veterano, submetendo-se ao comando e mantendo a ordem. No dia <strong>10 de janeiro</strong>, sua consistência nas operações de aquisição de capital transformou-o em uma bússola para os novos membros, provando que a prosperidade do Clã passava por suas mãos.</p>
+
+            <p>Rafael não brilhou apenas nas sombras. Em <strong>12 de janeiro de 2026</strong>, portou-se com elegância e autoridade como força de segurança na 1ª Sessão da Assembleia Legislativa, e em <strong>16 de janeiro</strong>, foi peça-chave no planejamento da nossa expansão Omote através dos eventos de corrida. Mesmo quando errou, em <strong>18 de janeiro</strong>, ao ser advertido pelo Saiko Komon, demonstrou a grandeza da humildade, absorvendo a lição e transformando a falha em perfeccionismo técnico.</p>
+
+            <p>O ápice de seu sacrifício ocorreu em <strong>19 de janeiro de 2026</strong>, na <strong>Operação Tekken</strong>. Rafael aceitou o papel de <strong>Suteishi (O Sacrifício Tático)</strong>. Emboscado e abatido pelo traidor Andre Brasil, ele preferiu o chão ao desonrar o juramento. Caiu em silêncio, cumprindo o seu dever para que o Clã pudesse triunfar. Em <strong>20 de janeiro</strong>, com a ausência de lideranças, sua prontidão o levou a ser cotado para o comando interino do Gyomu Gumi. E quando a Máfia Russa ousou tocá-lo em <strong>23 de janeiro</strong>, o Clã Seidōkai moveu o céu e a terra em uma retaliação devastadora que varreu os agressores da existência, pois tocar em Rafael Dias era tocar no coração da Família.</p>
+
+            <h3>III – DA LENDA E DO VEREDITO</h3>
+            <p>Sua lenda tornou-se eterna em <strong>02 de fevereiro de 2026</strong>, na <strong>Operação Kusari no Kaji</strong>. No Hospital de Fort Carson, enquanto o Estado acreditava ter vencido a Seidōkai, Rafael Dias empunhou uma gazua como se fosse uma espada sagrada. Ele rompeu as algemas do Kyōdai Gabriel Gamero, devolvendo a liberdade a um irmão e a dignidade ao Clã, realizando um resgate que fuzis não poderiam executar. Recentemente, em <strong>07 de fevereiro</strong>, subiu aos céus na <strong>Operação Karasu</strong>, pilotando o "Corvo" com a visão de um predador para desmascarar a traição de Winchester e selar o destino dos nossos inimigos.</p>
+
+            <div class="bloco-honra">
+                <p>Hoje, Rafael Dias é o nosso <strong>Setten</strong> junto aos Aztecas, a face da nossa soberania e o guardião da frota na Oficina Temple. Ele é o homem que transmutou Mauro Shampo em um nome de respeito administrativo. Diante desta folha de serviços escrita com suor, óleo e sangue, o Jōsobu decreta:</p>
+                <p style="font-size: 12pt; font-weight: bold; text-align: center; margin: 10px 0;">RAFAEL DIAS É ELEVADO AO STATUS DE <span style="color: #8b3a3a;">INATIVO HONORÁRIO</span> DO CLÃ SEIDŌKAI.</p>
+                <p>Ele leva consigo o <strong>Okurimono de Soberania</strong> no valor de <strong>R$ 300.000,00</strong> como provisão para seu exílio. E fica aqui registrado o compromisso solene:</p>
+                <p style="font-style: italic; text-align: center;">Enquanto o pavilhão do Aço Negro tremular nesta cidade e o Clã Seidōkai existir, o lugar de Rafael Dias à mesa do Conselho permanecerá reservado. Seu terno azul meia-noite ficará guardado em nosso Jimusho, imaculado, esperando o dia em que o Libertador de Fort Carson retornará para clamar o que é seu por direito de conquista.</p>
+            </div>
+
+            <p style="text-align: center; font-size: 12pt; margin: 20px 0;"><strong>Vá, Rafael Dias. Marche para a caserna com a certeza de que você não é apenas um Shatei; você é uma lenda viva do Aço Negro.</strong></p>
+
+            <p style="text-align: center; font-size: 11pt; font-weight: bold; color: #8b3a3a; margin: 15px 0;">“Kusari wa kirenai. Hagane wa eien da.”<br><span class="japones">(A Corrente não quebra. O Aço é eterno.)</span></p>
+
+            <p style="text-align: right; margin-top: 20px;">São Paulo, 20 de fevereiro de 2026.</p>
+        </div>
+
+        <!-- ASSINATURAS -->
+        <div class="assinatura-dupla">
+            <div class="assinatura-col">
+                <img src="https://github.com/jimusho-seidokai/santos-e-associados/blob/main/imagens/assinatura_virgulino.png?raw=true" alt="Assinatura Virgulino Santos">
+                <div class="linha-assinatura"></div>
+                <p class="nome-assinatura">Virgulino Santos</p>
+                <p class="cargo-assinatura">Saiko Komon · Clã Seidōkai</p>
+            </div>
+            <div class="assinatura-col">
+                <img src="https://i.imgur.com/lgQx35U.png" alt="Assinatura Josef Medina">
+                <div class="linha-assinatura"></div>
+                <p class="nome-assinatura">Josef Medina</p>
+                <p class="cargo-assinatura">Oyabun · Clã Seidōkai</p>
+            </div>
+        </div>
+
+        <!-- RODAPÉ -->
+        <div class="rodape">
+            CLÃ SEIDŌKAI – JŌSOBU | Documento Interno (URA) · Proibida a reprodução fora dos canais de comando
+        </div>
+
+    </div>
+</body>
+</html>
