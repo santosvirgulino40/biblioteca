@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento de Dissolução do Clã Seidōkai – GUMEN Geral</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: 'Times New Roman', serif;
+        }
+        .pagina {
+            background-color: white;
+            color: black;
+            width: 210mm;
+            height: 297mm;
+            padding: 2.5cm 2cm 2cm 3cm;
+            margin: 0 auto;
+            text-align: justify;
+            line-height: 1.2;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            border: none;
+            page-break-after: always;
+        }
+        .pagina:last-child {
+            page-break-after: auto;
+        }
+
+        .cabecalho-josobu {
+            text-align: center;
+            margin-bottom: 5px;
+            flex-shrink: 0;
+        }
+        .logo-josobu {
+            margin-bottom: -35px;
+        }
+        .logo-josobu img {
+            width: 200px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .cabecalho-josobu h1 {
+            margin: 0;
+            font-size: 18pt;
+            letter-spacing: 6px;
+            font-weight: bold;
+            color: black;
+            text-transform: uppercase;
+            font-family: 'Cinzel', serif;
+        }
+        .cabecalho-josobu .josobu-titulo {
+            margin: 1px 0;
+            font-size: 12pt;
+            letter-spacing: 10px;
+            color: #c5a059;
+            font-weight: bold;
+            border-top: 1px solid #c5a059;
+            border-bottom: 1px solid #c5a059;
+            display: inline-block;
+            padding: 1px 30px;
+        }
+        .cabecalho-josobu .lema {
+            margin-top: 5px;
+            font-size: 8pt;
+            letter-spacing: 2px;
+            color: #333;
+            font-style: italic;
+        }
+
+        .selo-ura {
+            position: absolute;
+            top: 2.5cm;
+            right: 2cm;
+            font-size: 10pt;
+            font-weight: bold;
+            color: #8b3a3a;
+            border: 2px solid #8b3a3a;
+            padding: 3px 8px;
+            transform: rotate(5deg);
+            font-family: 'Cinzel', serif;
+            opacity: 0.8;
+            z-index: 20;
+        }
+        .numero-documento {
+            position: absolute;
+            top: 1.2cm;
+            left: 1.8cm;
+            font-size: 7pt;
+            color: #999;
+            font-family: monospace;
+        }
+        .titulo-documento {
+            text-align: center;
+            margin: 5px 0 10px;
+            flex-shrink: 0;
+        }
+        .titulo-documento span {
+            font-size: 12pt;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 2px solid black;
+            padding-bottom: 2px;
+        }
+        .subtitulo-doc {
+            text-align: center;
+            font-size: 10pt;
+            font-weight: bold;
+            color: #8b3a3a;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .corpo {
+            font-size: 9.5pt;
+            color: black;
+            flex-grow: 1;
+        }
+        .corpo p {
+            margin: 0 0 3px 0;
+            text-align: justify;
+            text-indent: 1.25cm;
+        }
+        .corpo p.sem-recuo {
+            text-indent: 0;
+        }
+        .corpo .epigrafe {
+            font-style: italic;
+            font-size: 9pt;
+            color: #444;
+            margin: 5px 0;
+            text-align: center;
+            text-indent: 0;
+        }
+        .corpo h3 {
+            font-size: 10pt;
+            font-weight: bold;
+            margin: 8px 0 2px 0;
+            text-indent: 0;
+            color: #001f3f;
+            border-left: 3px solid #c5a059;
+            padding-left: 6px;
+        }
+        .corpo .destaque {
+            font-weight: bold;
+            color: #8b3a3a;
+        }
+        .corpo .japones {
+            font-style: italic;
+            color: #555;
+        }
+        .lista-membros {
+            margin: 2px 0 0 0;
+            columns: 2;
+            column-gap: 20px;
+            list-style-type: square;
+            padding-left: 18px;
+            font-size: 8.5pt;
+            line-height: 1.1;
+        }
+        .lista-membros li {
+            margin-bottom: 1px;
+        }
+        .bloco-honra {
+            margin: 10px 0;
+            padding: 6px;
+            border: 1px dashed #c5a059;
+            background-color: #fcf9f0;
+            text-indent: 0;
+        }
+        .bloco-honra p {
+            text-indent: 0;
+            margin: 3px 0;
+        }
+
+        .assinatura-dupla {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 15px;
+            flex-shrink: 0;
+        }
+        .assinatura-col {
+            text-align: center;
+            width: 200px;
+            position: relative;
+        }
+        .assinatura-col .assinatura-container {
+            position: relative;
+            height: 40px;
+            width: 100%;
+            margin-bottom: 3px;
+        }
+        .assinatura-col .assinatura-container img {
+            height: 55px;
+            width: auto;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            filter: grayscale(100%) contrast(1.2);
+            opacity: 0.9;
+            pointer-events: none;
+        }
+        .assinatura-col .linha-assinatura {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-top: 1.5px solid black;
+            z-index: 5;
+        }
+        .assinatura-col .nome-assinatura {
+            margin: 2px 0 0 0;
+            font-weight: bold;
+            font-size: 10pt;
+            text-transform: uppercase;
+        }
+        .assinatura-col .cargo-assinatura {
+            margin: 1px 0 0 0;
+            font-size: 8pt;
+            color: #333;
+            text-transform: uppercase;
+        }
+        .rodape {
+            margin-top: auto;
+            text-align: center;
+            font-size: 6pt;
+            color: #666;
+            border-top: 1px solid #eee;
+            padding-top: 3px;
+            width: 100%;
+        }
+        @media print {
+            body { background: white; }
+            .pagina { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- PÁGINA 1 -->
+    <div class="pagina">
+
+        <div class="cabecalho-josobu">
+            <div class="logo-josobu">
+                <img src="https://i.imgur.com/HRlUYd7.png" alt="JŌSOBU">
+            </div>
+            <h1>CLÃ SEIDŌKAI</h1>
+            <div class="josobu-titulo">JŌSOBU</div>
+            <div class="lema">“O aço é forjado no fogo; a honra é provada no silêncio.”</div>
+        </div>
+
+        <div class="titulo-documento">
+            <span>DOCUMENTO DE DISSOLUÇÃO</span>
+        </div>
+        <div class="subtitulo-doc">
+            GUMEN GERAL · LIBERAÇÃO DE TODOS OS SAKAZUKI · EPITÁFIO DO AÇO NEGRO
+        </div>
+
+        <div class="corpo">
+            <p class="epigrafe sem-recuo">
+                “Toda chama que ilumina a noite um dia se extingue, mas a brasa que resta aquece para sempre a memória de quem a viu brilhar. O Clã Seidōkai não morre; ele se transforma na lenda que guiará os passos de cada irmão para sempre.”
+            </p>
+
+            <p class="sem-recuo">Irmãos,</p>
+
+            <p>Chegamos ao fim de um ciclo. O que começou como um juramento de sangue em outubro de 2025, hoje, 24 de fevereiro de 2026, encerra-se com a mesma solenidade e honra com que foi forjado. O Jōsobu, em deliberação unânime e soberana, decreta a <strong>dissolução definitiva do Clã Seidōkai</strong>. Esta não é uma derrota, nem uma rendição. É a última afirmação de nossa Vontade. Recusamo-nos a vergar diante de regras que não escrevemos, a jogar um jogo cujas peças foram movidas por mãos que não respeitamos. Preferimos apagar a nossa própria estrela a vê-la cair nas mãos do inimigo ou, pior, a vê-la brilhar sob a luz pálida de uma falsa soberania.</p>
+
+            <h3>I – DOS MOTIVOS DA DISSOLUÇÃO</h3>
+            <p>O Clã Seidōkai ascendeu ao topo do submundo e, por um momento, segurou nas mãos as rédeas do Estado. Corrompemos delegados, compramos juízes, fizemos governadores dançarem conforme nossa música. A Doutrina <span class="japones">Kirin no Shikkō</span> nos tornou os verdadeiros imperadores das sombras. Mas o preço da soberania é a eterna vigilância, e quando os próprios deuses do tabuleiro mudam as regras para conter nosso avanço, o jogo perde o sentido. As novas diretrizes impostas pela Administração – restrições econômicas, cerceamento da nossa autonomia, a tentativa de domesticar o indomável – foram a sentença final. Não nos curvaríamos. Não negociaríamos nossa essência. E, assim, escolhemos o caminho dos samurais: o fim digno, o último ato de desafio, o <span class="destaque">Seppuku Coletivo</span> que gravará nosso nome na história não como vencidos, mas como aqueles que partiram em seus próprios termos.</p>
+
+            <h3>II – DO ATO FINAL: O SEPPUKU COLETIVO</h3>
+            <p>Antes de silenciarmos para sempre, nossa espada terá um último e ensurdecedor grito. O arsenal do Clã Seidōkai, forjado com o suor e o sangue de cada irmão, não será confiscado nem abandonado. Será <strong>distribuído como um legado de fogo</strong> às organizações que restam no submundo, um presente envenenado que perpetuará o caos que tanto amamos. E, como ato final de Vontade, marcharemos unidos, em formação de combate, contra o coração do poder que tentou nos domar: a <strong>Base da Polícia Militar</strong>. Não será uma batalha pela vitória, pois a vitória, para nós, já não existe neste plano. Será um ato de guerra pura, um derramamento de sangue que servirá de epitáfio e de aviso. Que cada tiro disparado seja a última estrofe do hino do Aço Negro. Que cada baixa inimiga seja a prova de que o Seidōkai não se rende, apenas se imola na glória do combate final.</p>
+
+            <h3>III – DA DISPENSA GERAL (GUMEN)</h3>
+            <p>Fica, por meio deste documento, <strong>desfeito todo e qualquer juramento de sangue (Sakazuki)</strong> firmado perante o Clã Seidōkai. Cada irmão, de Kobun a Waka-Gashira, está liberado de seus votos de lealdade e obediência. O dever de <span class="japones">Mokuhi</span> (Silêncio Sagrado) permanece, não mais por obrigação ao Clã, mas por respeito à história que construímos juntos. O que viveram, o que sofreram e o que conquistaram dentro destas fileiras é agora um segredo que cada um levará consigo para sempre.</p>
+
+            <p class="sem-recuo">Abaixo, a lista completa dos irmãos que, por direito e honra, recebem a Dispensa Honrosa, com seus respectivos postos na data da dissolução. Que levem o Aço Negro em seus corações onde quer que forem.</p>
+
+            <ul class="lista-membros">
+                <li><strong>Ruan Villa (Godinez Stark)</strong> – Waka-Gashira</li>
+                <li><strong>Abner Pedra</strong> – Shatei-Gashira (Inativo Honorário)</li>
+                <li><strong>Matteus Ramos</strong> – Shatei-Gashira (Inativo Honorário)</li>
+                <li><strong>Fabio Araujo</strong> – Shingiin</li>
+                <li><strong>Gabriel Gamero</strong> – Kyōdai</li>
+                <li><strong>Muhamed Qadir (Muha Swagger)</strong> – Kyōdai</li>
+                <li><strong>Rui Português</strong> – Kyōdai</li>
+                <li><strong>Rafael Dias (Mauro Shampoo)</strong> – Shatei (Inativo Honorário)</li>
+                <li><strong>Emerson Carvalho</strong> – Shatei</li>
+                <li><strong>Robson Junior</strong> – Shatei</li>
+                <li><strong>Mathias Blackwood</strong> – Kobun (Inativo Honorário)</li>
+                <li><strong>Priscila Maria</strong> – Shingiin (Inativo Honorário)</li>
+                <li><strong>DaSilva Silva</strong> – Shatei (Inativo Honorário)</li>
+            </ul>
+        </div>
+
+        <div class="rodape">
+            CLÃ SEIDŌKAI – DOCUMENTO DE DISSOLUÇÃO | PÁGINA 1 DE 2
+        </div>
+    </div>
+
+    <!-- PÁGINA 2 -->
+    <div class="pagina">
+
+        <div class="corpo">
+            <h3>IV – DO LEGADO E DO EPITÁFIO</h3>
+            <p>O Clã Seidōkai não existirá mais como organização, mas seu legado ecoará nas ruas desta cidade por décadas. Fomos nós que provamos que o crime pode ser gerido com a disciplina de uma corporação. Fomos nós que transformamos a lei em escudo e a política em espada. Fomos nós que, por um breve momento, fizemos o Estado pagar tributo ao submundo. E, no fim, fomos nós que tivemos a coragem de dizer "basta" e transformar nossa própria extinção em um ato de guerra. Que os que vierem depois lembrem-se: houve um tempo em que o Aço Negro dominou as sombras, e que, ao invés de se curvar, preferiu quebrar-se no fogo, espalhando suas brasas para sempre.</p>
+
+            <div class="bloco-honra">
+                <p style="text-align: center; font-size: 11pt; font-weight: bold;">“Aqui jaz o Clã Seidōkai. Não por covardia, não por derrota, mas porque preferimos a aniquilação à submissão.”</p>
+                <p style="text-align: center; margin-top: 5px;">Nossas armas estão nas mãos da cidade. Nosso sangue, manchando as paredes da caserna. Nossa honra, intacta para sempre.</p>
+            </div>
+
+            <p style="text-align: center; font-size: 10pt; font-weight: bold; color: #8b3a3a; margin: 10px 0;">“Kusari wa tomo ni, kokoro wa eien ni. Saigo no ichigeki made, wareware wa Seidōkai.”<br><span class="japones">(A corrente se desfez, mas o coração permanece eterno. Até o último golpe, nós fomos Seidōkai.)</span></p>
+
+            <p style="text-align: right; margin-top: 15px;">São Paulo, 24 de fevereiro de 2026.</p>
+        </div>
+
+        <div class="assinatura-dupla">
+            <div class="assinatura-col">
+                <div class="assinatura-container">
+                    <img src="https://github.com/jimusho-seidokai/santos-e-associados/blob/main/imagens/assinatura_virgulino.png?raw=true" alt="Assinatura Virgulino Santos">
+                    <div class="linha-assinatura"></div>
+                </div>
+                <p class="nome-assinatura">Virgulino Santos</p>
+                <p class="cargo-assinatura">Saiko Komon · Clã Seidōkai</p>
+            </div>
+            <div class="assinatura-col">
+                <div class="assinatura-container">
+                    <img src="https://i.imgur.com/lgQx35U.png" alt="Assinatura Josef Medina">
+                    <div class="linha-assinatura"></div>
+                </div>
+                <p class="nome-assinatura">Josef Medina</p>
+                <p class="cargo-assinatura">Oyabun · Clã Seidōkai</p>
+            </div>
+        </div>
+
+        <div class="rodape">
+            CLÃ SEIDŌKAI – DISSOLVIDO | Documento Final (URA) · PÁGINA 2 DE 2 · Para ser guardado na memória de cada irmão
+        </div>
+    </div>
+</body>
+</html>
